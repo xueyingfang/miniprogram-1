@@ -1,0 +1,75 @@
+/* pages/detail/detail.wxss */
+.reader {
+  width: 100%;
+  height: 100vh;
+  background: #f7f3e9;
+  position: relative;
+  padding: 80rpx 40rpx;
+  box-sizing: border-box;
+}
+
+/* 新增：非首页，左上角悬浮缩小章节标题 */
+.float-chapter-title{
+  position: fixed;
+  top: 20rpx;
+  left:30rpx;
+  font-size:24rpx;
+  color:#777;
+  z-index:10;
+}
+
+.content {
+  width: 100%;
+}
+.chapter-title {
+  font-size: 36rpx;
+  font-weight:bold; /* 第一页标题加粗 */
+  text-align: center;
+  margin-bottom: 40rpx;
+  color: #333;
+}
+/* 新增段落样式，每段首行缩进，段与段之间留间距 */
+.text-paragraph {
+  font-size: 34rpx;
+  line-height: 64rpx;
+  color: #222;
+  text-indent: 2em;
+  margin-bottom: 20rpx;
+}
+/* 侧边目录【原有全部保留】 */
+.catalog-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  z-index: 99;
+}
+.catalog-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 520rpx;
+  height: 100vh;
+  background: #fff;
+  padding: 60rpx 30rpx;
+  box-sizing: border-box;
+}
+.catalog-header {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 30rpx;
+  text-align: center;
+}
+.catalog-list {
+  height: calc(100vh - 120rpx);
+}
+.catalog-item {
+  padding: 24rpx 10rpx;
+  font-size: 30rpx;
+  border-bottom: 1rpx solid #eee;
+}
+.catalog-item.active {
+  color: #007aff;
+}

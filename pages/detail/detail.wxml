@@ -1,0 +1,31 @@
+<!-- pages/detail/detail.wxml -->
+<view class="reader" bindtap="onTapScreen">
+  <!-- 非本章第一页：左上角悬浮小字章节名 -->
+  <view wx:if="{{!isChapterFirstPage && currentChapter.title}}" class="float-chapter-title">
+    {{currentChapter.title}}
+  </view>
+
+  <!-- 正文区域 -->
+  <view class="content">
+    <!-- 本章第一页：居中、放大加粗章节标题 -->
+    <view wx:if="{{isChapterFirstPage && currentChapter.title}}" class="chapter-title">{{currentChapter.title}}</view>
+    <!-- 这里改成循环渲染段落，实现分段，替换原来的单行text -->
+    <view class="text-paragraph" wx:for="{{pageParagraphs}}" wx:key="index">
+      {{item}}
+    </view>
+  </view>
+
+  <!-- 侧边目录遮罩【完全保留原有】 -->
+  <view wx:if="{{showCatalog}}" class="catalog-mask" bindtap="closeCatalog">
+    <view class="catalog-panel" catchtap="stopEvent">
+      <view class="catalog-header">目录</view>
+      <scroll-view scroll-y class="catalog-list">
+        <view wx:for="{{chapterList}}" wx:key="index"
+              class="catalog-item {{index === chapterIndex ? 'active' : ''}}"
+              bindtap="jumpChapter" data-index="{{index}}">
+          {{item.title}}
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

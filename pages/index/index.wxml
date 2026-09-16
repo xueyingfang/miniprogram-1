@@ -1,0 +1,41 @@
+<!-- 导入书籍按钮，保留！ -->
+<button class="import-btn" bindtap="openPopup">+导入TXT书籍</button>
+
+<!-- 书籍列表 -->
+<view class="book-item" wx:for="{{bookList}}" wx:key="id"
+      bindtap="goDetail"
+      bindlongpress="showDeleteMenu"
+      data-id="{{item.id}}">
+  <image class="cover" src="{{item.cover}}" mode="aspectFill"></image>
+  <view class="info">
+    <text class="title">{{item.title}}</text>
+    <text class="author">{{item.author}}</text>
+  </view>
+  <!-- 模拟器调试用删除按钮 -->
+  <view bindtap="showDeleteMenu" data-id="{{item.id}}" style="color:red; font-size:24rpx; padding:10rpx">删除</view>
+</view>
+
+<!-- 导入TXT弹窗 -->
+<view wx:if="{{showPopup}}" class="mask" bindtap="closePopup">
+    <view class="popup" data-role="popup">
+      <view class="popup-title">导入TXT书籍</view>
+      <view wx:if="{{fileTip}}" class="tip">{{fileTip}}</view>
+      <button bindtap="selectTxtFile" type="default">选择本地TXT文件</button>
+      <view class="btn-row">
+        <button bindtap="closePopup" class="cancel-btn">取消</button>
+        <button bindtap="submitBook" type="primary" disabled="{{!form.content}}">提交保存</button>
+      </view>
+    </view>
+  </view>
+
+<!-- 删除确认弹窗 -->
+<view wx:if="{{showDeletePopup}}" class="mask" bindtap="closeDeletePopup">
+    <view class="popup" data-role="popup">
+      <view class="popup-title">确认删除</view>
+      <view class="del-tip">确定要删除这本书吗？</view>
+      <view class="btn-row">
+        <button bindtap="closeDeletePopup" class="cancel-btn">取消</button>
+        <button bindtap="confirmDelete" type="primary" style="background:#ee0a24">删除</button>
+      </view>
+    </view>
+</view>
